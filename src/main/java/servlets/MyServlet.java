@@ -43,7 +43,6 @@ public class MyServlet extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ClassNotFoundException {
         MyDataBase db = new MyDataBase();
 
-
         response.setStatus(200);
 
         PrintWriter out = response.getWriter();
@@ -55,14 +54,13 @@ public class MyServlet extends HttpServlet {
             String name = (String)en.nextElement();
             out.println(name);
 
-            String value = request.getParameter(name);
-
             String[] values = request.getParameterValues(name);
 
             for (int i=0; i<values.length; i++) {
-                out.println(" " + values[i]);
+                out.println(values[i]);
                 db.writeName(values[i]);
             }
+
         }
         out.close();
     }
